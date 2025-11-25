@@ -11,14 +11,14 @@ const {
 
 const router = express.Router();
 
-// Admin routes first (before :id to avoid conflicts)
+// Admin and specific routes first (before :id to avoid conflicts)
 router.get("/admin/all", authMiddleware, getAllBookings);
+router.get("/customer/:customerId", authMiddleware, getCustomerBookings);
 
 // Protected routes
 router.post("/", authMiddleware, createBooking);
 router.post("/payment", authMiddleware, processPayment);
 router.delete("/:id", authMiddleware, deleteBooking);
 router.get("/:id", authMiddleware, getBookingById);
-router.get("/customer/:customerId", authMiddleware, getCustomerBookings);
 
 module.exports = router;
